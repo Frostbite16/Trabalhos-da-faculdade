@@ -1,0 +1,8 @@
+int verifica_cpf_valido(char cpf[]) {
+    int valido=1;
+    int icpf[];
+    icpf[] = cpf[] - '0';
+   
+
+    return(valido);
+}
