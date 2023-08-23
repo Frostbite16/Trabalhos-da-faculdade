@@ -8,12 +8,17 @@ int obtem_primeiro_digito_verificador(char cpf[]){//obtem o primeiro digito veri
         digito+=intcpf*cont;
         cont-=1;
     }
-    return(digito);
+    return(digito*10%11);
 }
 int obtem_segundo_digito_verificador(char cpf[]) {//obtem o primeiro digito verificador
     int digito=0,intcpf,cont=11,calccpf,i;//declaracao de variaveis
     for(int i=0;i<10;i++){//converte digitos do cpf de char para int e faz o calculo necessario
-        intcpf = cpf[i] - '0';
+        if(i<=9){
+            intcpf = cpf[i] - '0';
+        }
+        else{
+            intcpf = obtem_primeiro_digito_verificador(cpf);
+        }
         digito+=intcpf*cont;
         cont-=1;
     }
@@ -44,6 +49,6 @@ int verifica_cpf_valido(char cpf[]) {
 int main(){
     char cpf[12];
     scanf("%s,",&cpf);
-    printf("%d",verifica_cpf_valido(cpf));
+    printf("%d, %d",obtem_primeiro_digito_verificador(cpf),obtem_segundo_digito_verificador(cpf));
     
 }
